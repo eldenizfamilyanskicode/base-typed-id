@@ -75,14 +75,14 @@ class BaseTypedId(str):
         cls,
         parsed_uuid_value: UUID,
     ) -> None:
-        expecteduuid_version: int | None = cls.uuid_version
-        if expecteduuid_version is None:
+        expected_uuid_version: int | None = cls.uuid_version
+        if expected_uuid_version is None:
             return
 
         actual_uuid_version: int | None = parsed_uuid_value.version
-        if actual_uuid_version != expecteduuid_version:
+        if actual_uuid_version != expected_uuid_version:
             raise BaseTypedIdInvalidInputValueError(
-                f"{cls.__name__} expects UUID v{expecteduuid_version}. "
+                f"{cls.__name__} expects UUID v{expected_uuid_version}. "
                 f"Got UUID v{actual_uuid_version}: {parsed_uuid_value}."
             )
 
