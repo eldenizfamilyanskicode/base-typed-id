@@ -1,6 +1,6 @@
 # base-typed-id
 
-Strict typed UUID identifier base class with exact runtime subtype preservation and optional Pydantic v2 support.
+`base_typed_id` is a small Python library for building domain-specific UUID-backed identifier types with exact runtime subtype preservation.
 
 ## Why
 
