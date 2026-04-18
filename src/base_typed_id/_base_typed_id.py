@@ -147,6 +147,9 @@ class BaseTypedId(str):
             ),
         )
 
+    def __getnewargs__(self) -> tuple[str]:
+        return (str(self),)
+
     def __reduce__(
         self,
     ) -> tuple[type[BaseTypedId], tuple[str]]:

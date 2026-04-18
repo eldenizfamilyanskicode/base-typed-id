@@ -4,8 +4,7 @@ from uuid import UUID
 
 import pytest
 
-from base_typed_id import BaseTypedId
-from base_typed_id import BaseTypedIdInvalidInputValueError
+from base_typed_id import BaseTypedId, BaseTypedIdInvalidInputValueError
 
 
 class UserId(BaseTypedId):
@@ -52,7 +51,7 @@ def test_unsupported_input_type_raises_error() -> None:
         UserId(123)  # type: ignore[arg-type]
 
 
-def testuuid_version_mismatch_raises_error() -> None:
+def test_uuid_version_mismatch_raises_error() -> None:
     with pytest.raises(BaseTypedIdInvalidInputValueError):
         UserId("123e4567-e89b-52d3-a456-426614174000")
 

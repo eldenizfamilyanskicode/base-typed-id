@@ -33,30 +33,17 @@ def print_value_state(label: str, value: object) -> None:
 def demonstrate_direct_runtime_identity() -> None:
     print_section("1. direct construction")
 
-    user_id_from_string: UserId = UserId(
-        "123e4567-e89b-42d3-a456-426614174000"
-    )
-    user_id_from_uuid: UserId = UserId(
-        UUID("123e4567-e89b-42d3-a456-426614174001")
-    )
+    user_id_from_string: UserId = UserId("123e4567-e89b-42d3-a456-426614174000")
+    user_id_from_uuid: UserId = UserId(UUID("123e4567-e89b-42d3-a456-426614174001"))
     generated_user_id: UserId = UserId()
 
     print_value_state("user_id_from_string", user_id_from_string)
     print_value_state("user_id_from_uuid", user_id_from_uuid)
     print_value_state("generated_user_id", generated_user_id)
 
-    print(
-        f"user_id_from_string exact subtype : "
-        f"{type(user_id_from_string) is UserId}"
-    )
-    print(
-        f"user_id_from_uuid exact subtype   : "
-        f"{type(user_id_from_uuid) is UserId}"
-    )
-    print(
-        f"generated_user_id exact subtype   : "
-        f"{type(generated_user_id) is UserId}"
-    )
+    print(f"user_id_from_string exact subtype : {type(user_id_from_string) is UserId}")
+    print(f"user_id_from_uuid exact subtype   : {type(user_id_from_uuid) is UserId}")
+    print(f"generated_user_id exact subtype   : {type(generated_user_id) is UserId}")
     print(
         f"generated_user_id is UUID v4      : "
         f"{UUID(str(generated_user_id)).version == 4}"
@@ -95,8 +82,7 @@ def demonstrate_container_and_attribute_behavior() -> None:
     print_value_state("stored_key_object", stored_key_object)
 
     print(
-        f"list keeps same object            : "
-        f"{retrieved_from_list is source_user_id}"
+        f"list keeps same object            : {retrieved_from_list is source_user_id}"
     )
     print(
         f"dict value keeps same object      : "
@@ -106,10 +92,7 @@ def demonstrate_container_and_attribute_behavior() -> None:
         f"class attribute keeps same object : "
         f"{retrieved_from_attribute is source_user_id}"
     )
-    print(
-        f"dict key object is same object    : "
-        f"{stored_key_object is source_user_id}"
-    )
+    print(f"dict key object is same object    : {stored_key_object is source_user_id}")
     print(f"typed key lookup works            : {retrieved_by_typed_key == 'present'}")
     print(
         f"plain str key lookup works        : "

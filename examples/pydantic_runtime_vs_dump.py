@@ -70,12 +70,10 @@ def main() -> None:
     print_value_state("backup_user_id_from_dump", backup_user_id_from_dump)
 
     print(
-        f"primary_user_id flattened to str  : "
-        f"{type(primary_user_id_from_dump) is str}"
+        f"primary_user_id flattened to str  : {type(primary_user_id_from_dump) is str}"
     )
     print(
-        f"backup_user_id flattened to str   : "
-        f"{type(backup_user_id_from_dump) is str}"
+        f"backup_user_id flattened to str   : {type(backup_user_id_from_dump) is str}"
     )
 
     print_section("3. json dump")

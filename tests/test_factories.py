@@ -8,8 +8,8 @@ from base_typed_id import (
     BaseTypedId,
     BaseTypedIdInvalidInputValueError,
     BaseTypedIdInvariantViolationError,
+    deterministically_from_words,
 )
-from base_typed_id.factories import deterministically_from_words
 
 
 class StableEventId(BaseTypedId):

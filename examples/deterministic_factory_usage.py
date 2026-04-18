@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from base_typed_id import BaseTypedId
-from base_typed_id.factories import deterministically_from_words
+from base_typed_id import BaseTypedId, deterministically_from_words
 
 
 class ExternalEventId(BaseTypedId):

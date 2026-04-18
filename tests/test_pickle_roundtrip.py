@@ -9,6 +9,14 @@ class UserId(BaseTypedId):
     pass
 
 
+def test_getnewargs_returns_plain_string_tuple() -> None:
+    user_id: UserId = UserId("123e4567-e89b-42d3-a456-426614174000")
+
+    new_arguments: tuple[str] = user_id.__getnewargs__()
+
+    assert new_arguments == ("123e4567-e89b-42d3-a456-426614174000",)
+
+
 def test_pickle_roundtrip_preserves_exact_subtype() -> None:
     source_user_id: UserId = UserId("123e4567-e89b-42d3-a456-426614174000")
 
