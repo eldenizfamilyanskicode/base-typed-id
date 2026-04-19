@@ -58,7 +58,7 @@ class BaseTypedId(str):
         # Runtime guard is intentional because the library is callable from untyped code
         if not isinstance(value, str):  # pyright: ignore[reportUnnecessaryIsInstance]
             raise BaseTypedIdInvalidInputValueError(
-                "BaseTypedId must be initialized with None, str, or uuid.UUID. "
+                f"{cls.__name__} must be initialized with None, str, or uuid.UUID. "
                 f"Got: {type(value).__name__}."
             )
 
@@ -66,7 +66,7 @@ class BaseTypedId(str):
             return UUID(value)
         except ValueError as validation_error:
             raise BaseTypedIdInvalidInputValueError(
-                "BaseTypedId must be initialized with a valid UUID string. "
+                f"{cls.__name__} must be initialized with a valid UUID string. "
                 f"Got: {value!r}."
             ) from validation_error
 

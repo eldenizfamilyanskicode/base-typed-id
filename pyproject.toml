@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "base-typed-id"
-version = "0.1.1"
-description = "Strict typed UUID identifier base class with exact runtime subtype preservation and optional Pydantic v2 support."
+version = "0.2.0"
+description = "Strict typed UUID identifier base classes with exact runtime subtype preservation and optional Pydantic v2 support."
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [
@@ -29,6 +29,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: Implementation :: CPython",
     "Typing :: Typed",
 ]
