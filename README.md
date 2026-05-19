@@ -872,6 +872,33 @@ assert restored_user_id == "user_123e4567-e89b-42d3-a456-426614174000"
 assert type(restored_user_id) is UserId
 ```
 
+### Static tuple type preservation
+
+The pickle protocol internally uses a tuple shaped like:
+
+```python
+tuple[type[UserId], tuple[str]]
+```
+
+Static type checkers preserve the exact subclass through that tuple.
+
+```python
+from base_typed_id import BaseTypedId
+
+
+class UserId(BaseTypedId):
+    pass
+
+
+user_id: UserId = UserId("123e4567-e89b-42d3-a456-426614174000")
+reduce_tuple: tuple[type[UserId], tuple[str]] = user_id.__reduce__()
+rebuilt_user_id: UserId = reduce_tuple[0](*reduce_tuple[1])
+
+assert type(rebuilt_user_id) is UserId
+```
+
+This is covered by static tests for both mypy and pyright.
+
 ---
 
 ## JSON behavior
@@ -965,6 +992,7 @@ Current examples:
 * `examples/pickle_roundtrip.py`
 * `examples/pydantic_roundtrip_from_dump.py`
 * `examples/pydantic_runtime_vs_dump.py`
+* `examples/static_tuple_type_preservation.py`
 * `examples/prefixed_basic_usage.py`
 * `examples/prefixed_pydantic_runtime_vs_dump.py`
 
@@ -994,23 +1022,39 @@ The base classes stay intentionally small so that your domain layer remains expl
 
 ## Development
 
-### Run tests
+### Install in development mode
 
 ```bash
-pytest
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
 ```
 
-### Run lint
+### Run formatting and lint checks
 
 ```bash
-ruff check .
+python -m ruff format --check .
+python -m ruff check .
 ```
 
 ### Run type checking
 
 ```bash
-mypy src tests
-pyright
+python -m mypy src tests examples
+python -m pyright
+```
+
+### Run tests
+
+```bash
+python -m pytest
+```
+
+### Run the static tuple preservation example
+
+```bash
+python examples/static_tuple_type_preservation.py
+python -m mypy examples/static_tuple_type_preservation.py
+python -m pyright examples/static_tuple_type_preservation.py
 ```
 
 ### Build package
@@ -1022,7 +1066,7 @@ python -m build
 ### Validate distribution metadata
 
 ```bash
-twine check dist/*
+python -m twine check dist/*
 ```
 
 ---

@@ -16,4 +16,4 @@ __all__: list[str] = [
     "deterministically_from_words",
 ]
 
-__version__: str = "0.2.0"
+__version__: str = "0.2.1"

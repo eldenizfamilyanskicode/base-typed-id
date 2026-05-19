@@ -14,6 +14,10 @@ BasePrefixedTypedIdType = TypeVar(
     "BasePrefixedTypedIdType",
     bound="BasePrefixedTypedId",
 )
+BasePrefixedTypedIdSelf = TypeVar(
+    "BasePrefixedTypedIdSelf",
+    bound="BasePrefixedTypedId",
+)
 
 
 class BasePrefixedTypedId(str):
@@ -193,5 +197,7 @@ class BasePrefixedTypedId(str):
     def __getnewargs__(self) -> tuple[str]:
         return (str(self),)
 
-    def __reduce__(self) -> tuple[type[BasePrefixedTypedId], tuple[str]]:
+    def __reduce__(
+        self: BasePrefixedTypedIdSelf,
+    ) -> tuple[type[BasePrefixedTypedIdSelf], tuple[str]]:
         return (self.__class__, (str(self),))
